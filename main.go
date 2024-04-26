@@ -106,40 +106,6 @@ func AddBook(w http.ResponseWriter, r *http.Request) {
 	writer.Write([]string{book.Name, book.Author, fmt.Sprintf("%d", book.PublicationYear)})
 }
 
-// func DeleteBook(w http.ResponseWriter, r *http.Request) {
-// 	tokenString := r.Header.Get("Authorization")
-// 	claims := jwt.MapClaims{}
-// 	_, _ = jwt.ParseWithClaims(tokenString, claims, func(token *jwt.Token) (interface{}, error) {
-// 		return mySigningKey, nil
-// 	})
-
-// 	if claims["userType"] != "admin" {
-// 		http.Error(w, "Unauthorized", http.StatusUnauthorized)
-// 		return
-// 	}
-
-// 	bookName := r.URL.Query().Get("name")
-// 	if bookName == "" {
-// 		http.Error(w, "Invalid book name", http.StatusBadRequest)
-// 		return
-// 	}
-
-// 	books := getBooksForUserType("regular")
-// 	for i, book := range books {
-// 		if strings.ToLower(book.Name) == strings.ToLower(bookName) {
-// 			books = append(books[:i], books[i+1:]...)
-// 			break
-// 		}
-// 	}
-
-// 	file, _ := os.Create("regularUser.csv")
-// 	writer := csv.NewWriter(file)
-// 	defer writer.Flush()
-
-//		for _, book := range books {
-//			writer.Write([]string{book.Name, book.Author, fmt.Sprintf("%d", book.PublicationYear)})
-//		}
-//	}
 func DeleteBook(w http.ResponseWriter, r *http.Request) {
 	tokenString := r.Header.Get("Authorization")
 	claims := jwt.MapClaims{}
@@ -178,42 +144,6 @@ func DeleteBook(w http.ResponseWriter, r *http.Request) {
 }
 
 func getBooksForUserType(userType string) []Book {
-	// var books []Book
-	// fmt.Println("Inside function of homw")
-	// file, _ := os.Open("regularUser.csv")
-	// defer file.Close()
-	// fmt.Println(file)
-	// reader := csv.NewReader(file)
-	// fmt.Println(reader)
-	// for {
-	// 	record, err := reader.Read()
-	// 	if err == io.EOF {
-	// 		break
-	// 	}
-	// 	if len(record) >= 2 {
-	// 		books = append(books, Book{Name: record[0], Author: record[1]})
-	// 	}
-	// 	// books = append(books, Book{Name: record[0], Author: record[1]})
-	// 	fmt.Println(books)
-	// }
-
-	// if userType == "admin" {
-	// 	file, _ = os.Open("adminUser.csv")
-	// 	defer file.Close()
-	// 	reader = csv.NewReader(file)
-	// 	for {
-	// 		record, err := reader.Read()
-	// 		if err == io.EOF {
-	// 			break
-	// 		}
-	// 		if len(record) >= 2 {
-	// 			books = append(books, Book{Name: record[0], Author: record[1]})
-	// 		}
-	// 		//books = append(books, Book{Name: record[0], Author: record[1]})
-	// 	}
-	// }
-
-	// return books
 	var books []Book
 
 	file, _ := os.Open("regularUser.csv")
